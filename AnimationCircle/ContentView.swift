@@ -12,61 +12,14 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            Circle()
-                 .stroke(lineWidth: 5)
-                 .frame(width: 20, height: 20)
-                 .rotation3DEffect(.degrees(75), axis: (x: 1, y: 0, z: 0))
-                 .offset(y: moving ? 150 : -180)
-                 .animation(.interpolatingSpring(stiffness: 100, damping: 5).repeatForever(autoreverses: true), value: moving)
-            
-            Circle()
-                 .stroke(lineWidth: 5)
-                 .frame(width: 50, height: 50)
-                 .rotation3DEffect(.degrees(75), axis: (x: 1, y: 0, z: 0))
-                 .offset(y: moving ? 150 : -180)
-                 .animation(.interpolatingSpring(stiffness: 100, damping: 5).repeatForever(autoreverses: true).delay(0.05), value: moving)
-            
-            Circle()
-                 .stroke(lineWidth: 5)
-                 .frame(width: 80, height: 80)
-                 .rotation3DEffect(.degrees(75), axis: (x: 1, y: 0, z: 0))
-                 .offset(y: moving ? 150 : -180)
-                 .animation(.interpolatingSpring(stiffness: 100, damping: 5).repeatForever(autoreverses: true).delay(0.1), value: moving)
-            
-            Circle()
-                 .stroke(lineWidth: 5)
-                 .frame(width: 110, height: 110)
-                 .rotation3DEffect(.degrees(75), axis: (x: 1, y: 0, z: 0))
-                 .offset(y: moving ? 150 : -180)
-                 .animation(.interpolatingSpring(stiffness: 100, damping: 5).repeatForever(autoreverses: true).delay(0.15), value: moving)
-            
-            Circle()
-                 .stroke(lineWidth: 5)
-                 .frame(width: 140, height: 140)
-                 .rotation3DEffect(.degrees(75), axis: (x: 1, y: 0, z: 0))
-                 .offset(y: moving ? 150 : -180)
-                 .animation(.interpolatingSpring(stiffness: 100, damping: 5).repeatForever(autoreverses: true).delay(0.2), value: moving)
-            
-            Circle()
-                 .stroke(lineWidth: 5)
-                 .frame(width: 170, height: 170)
-                 .rotation3DEffect(.degrees(75), axis: (x: 1, y: 0, z: 0))
-                 .offset(y: moving ? 150 : -180)
-                 .animation(.interpolatingSpring(stiffness: 100, damping: 5).repeatForever(autoreverses: true).delay(0.25), value: moving)
-            
-            Circle()
-                 .stroke(lineWidth: 5)
-                 .frame(width: 200, height: 200)
-                 .rotation3DEffect(.degrees(75), axis: (x: 1, y: 0, z: 0))
-                 .offset(y: moving ? 150 : -180)
-                 .animation(.interpolatingSpring(stiffness: 100, damping: 5).repeatForever(autoreverses: true).delay(0.3), value: moving)
-            
-            Circle()
-                 .stroke(lineWidth: 5)
-                 .frame(width: 230, height: 230)
-                 .rotation3DEffect(.degrees(75), axis: (x: 1, y: 0, z: 0))
-                 .offset(y: moving ? 150 : -180)
-                 .animation(.interpolatingSpring(stiffness: 100, damping: 5).repeatForever(autoreverses: true).delay(0.35), value: moving)
+            ExtractedView(movingValue: moving, size: 20, delay: 0.0)
+            ExtractedView(movingValue: moving, size: 50, delay: 0.05)
+            ExtractedView(movingValue: moving, size: 80, delay: 0.10)
+            ExtractedView(movingValue: moving, size: 110, delay: 0.15)
+            ExtractedView(movingValue: moving, size: 140, delay: 0.20)
+            ExtractedView(movingValue: moving, size: 170, delay: 0.25)
+            ExtractedView(movingValue: moving, size: 200, delay: 0.30)
+            ExtractedView(movingValue: moving, size: 230, delay: 0.35)
           
         }
         .onAppear{
@@ -82,3 +35,18 @@ struct ContentView_Previews: PreviewProvider {
             
     }
 }
+
+struct ExtractedView: View {
+    let movingValue: Bool
+    let size: CGFloat
+    let delay: Double
+    var body: some View {
+        Circle()
+            .stroke(lineWidth: 5)
+            .frame(width: size, height: size)
+            .rotation3DEffect(.degrees(75), axis: (x: 1, y: 0, z: 0))
+            .offset(y: movingValue ? 150 : -180)
+            .animation(.interpolatingSpring(stiffness: 100, damping: 5).repeatForever(autoreverses: true).delay(delay), value: movingValue)
+    }
+}
+//0.35 230
